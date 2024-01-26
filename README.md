@@ -32,10 +32,10 @@ TaskManagerClient is the frontend part of a Task Management System built with Re
 
 ## GitHub Repository
 
-- **Repository Name:** [TaskManagerClient](https://github.com/yabesh12/TaskManagerClient)
+- **Repository Name:** [TaskManagerClient](https://github.com/yabesh12/Task-Manager-Client)
 - **Clone Repository:**
    ```bash
-   git clone https://github.com/yabesh12/TaskManagerClient.git
+   git clone https://github.com/yabesh12/Task-Manager-Client.git
    ```
 
 ## Getting Started
