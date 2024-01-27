@@ -1,8 +1,7 @@
 # TaskManagerClient - Frontend Overview
 
-TaskManagerClient is the frontend part of a Task Management System built with React.js. This project provides a user-friendly interface for managing tasks, offering features such as task creation, editing, deletion, status tracking, and sorting capabilities. This based on the backend project named 'TaskManager'.
+TaskManagerClient is the user interface for a React.js-based Task Management System, enabling easy task management with features like creation, editing, deletion, status tracking, and sorting, all linked to the 'TaskManager' backend..
 
-## Project Overview
 
 ### Setup
 1. **React.js Project:** The frontend is set up as a React.js project named "task-manager-client."
@@ -10,11 +9,14 @@ TaskManagerClient is the frontend part of a Task Management System built with Re
 ### Key Features
 
 1. **Task Management:**
+
+
    - View a List of Tasks
    - Add New Task
    - Edit Existing Task
    - Delete Task
    - Mark Tasks as Complete or Incomplete
+   - If the task' current date is beyond the due date, Task will be marked as 'OVERDUE'
 
 
 ### Additional Features 
@@ -27,6 +29,7 @@ TaskManagerClient is the frontend part of a Task Management System built with Re
 
 3. **User Roles and Permissions:**
    - Introduce user roles (e.g., admin, regular user) with distinct permissions for enhanced security and access control.
+   - 
 4. **Signup, Login, Logout:**
     - Implemented Token based authentication system.
 
@@ -65,8 +68,9 @@ TaskManagerClient is the frontend part of a Task Management System built with Re
 
 ## Usage
 
+- User Signup, Login, Logout (Token based Authentication & Authorization)
 - Create, edit, and delete tasks using the provided interface.
 - Mark tasks as complete or incomplete.
 - Organize tasks based on due date or status.
 - Utilize additional features such as search and pagination.
-- Admin, default user role previleges
+- Admin, default user role privileges
