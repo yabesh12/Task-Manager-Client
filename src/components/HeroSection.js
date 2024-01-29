@@ -2,7 +2,8 @@ import React from 'react';
 
 const HeroSection = () => {
   const heroStyle = {
-    backgroundImage: 'url("/task-manager-bg.jpg")',
+    position: 'relative',
+    backgroundImage: 'url("/bg.jpg")',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'scroll', // or 'scroll' depending on your preference
@@ -12,14 +13,24 @@ const HeroSection = () => {
     justifyContent: 'center',
     alignItems: 'center',
     color: 'white',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', // Optional text shadow for better visibility
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)', // Optional text shadow for better visibility
     fontFamily: 'Roboto, sans-serif', // Apply the Roboto font
+  };
+
+  const overlayStyle = {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0, 0, 0, 0.5)', 
   };
 
   return (
     <div style={heroStyle}>
-      <h1 className='text-dark'>Welcome to TaskManager</h1>
-      {/* Add any other content for the hero section */}
+      <div style={overlayStyle}></div>
+      <h1 className='text-light'>Welcome to TaskManager</h1>
     </div>
   );
 };

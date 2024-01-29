@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingButton from './LoadingButton';
 
 
 const SignUp = () => {
@@ -61,10 +62,14 @@ const SignUp = () => {
         // Redirect without using useHistory
         window.location.href = '/login';
       } else {
-        toast.error('Signup failed. Please check your inputs and try again.');
+        toast.error('Username already exists or Try again later.');
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        return;
       }
     } catch (error) {
-      toast.error('Username already exists or Try again later.');
+      toast.error('Signup failed. Please check your inputs and try again.');
       setUsername('');
       setEmail('');
       setPassword('');

@@ -12,6 +12,7 @@ function TaskList() {
   const [tasksPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [dataLoaded, setDataLoaded] = useState(false);
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ function TaskList() {
       toast.error('An error occurred when task delete!');
     }
   };
+  
 
   const fetchTasks = async (page, search = '') => {
     try {
@@ -45,6 +47,7 @@ function TaskList() {
       setTasks(response.data.results);
       setTotalPages(Math.ceil(response.data.count / tasksPerPage));
       setCurrentPage(page);
+      setDataLoaded(true); 
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +57,7 @@ function TaskList() {
     if (authToken) {
       fetchTasks(currentPage);
     }
-  }, [authToken, currentPage,]);
+  }, [authToken, currentPage]);
 
   const isOverdue = (dueDate) => {
     const currentDate = new Date();
@@ -73,7 +76,7 @@ function TaskList() {
   };
 
   return (
-    <div>
+    <div className='container'>
       <div className="flex justify-between items-center mb-4 mt-3">
         <h2 className="text-2xl font-semibold">Task List</h2>
 
@@ -100,12 +103,13 @@ function TaskList() {
     </div>
     <br></br>
 
-      {Array.isArray(tasks) && tasks.length > 0 ? (
+    {dataLoaded ? (
+      Array.isArray(tasks) && tasks.length > 0 ? (
         <>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>ID</th>
+                <th>S.No</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Status</th>
@@ -114,9 +118,9 @@ function TaskList() {
               </tr>
             </thead>
             <tbody>
-              {tasks.map((task) => (
+              {tasks.map((task, index) => (
                 <tr key={task.id}>
-                  <td>{task.id}</td>
+                  <td>{(currentPage - 1) * tasksPerPage + index + 1}</td>
                   <td>{task.title}</td>
                   <td>{task.description}</td>
                   <td>
@@ -132,17 +136,17 @@ function TaskList() {
                   </td>
                   <td>{task.due_date}</td>
                   <td>
-                    <Link to={`/tasks/edit/${task.id}`} className={`btn btn-outline-primary me-2 bg-blue-700 hover:bg-blue-700 text-dark font-bold py-2 px-4 rounded`}>
+                    <Link to={`/tasks/edit/${task.id}`} className={`btn btn-outline-info me-2 bg-blue-700 hover:bg-blue-700 text-dark font-bold py-2 px-4 rounded`}>
                       <PencilSquare className="me-1" />
-                      Edit
+                      
                     </Link>
                     <Link
                       to={`/tasks/delete/${task.id}`}
-                      className={`btn btn-outline-primary me-2 bg-blue-700 hover:bg-blue-700 text-dark font-bold py-2 px-4 rounded`}
+                      className={`btn btn-outline-danger me-2 bg-blue-700 hover:bg-blue-700 text-dark font-bold py-2 px-4 rounded`}
                       onClick={() => handleDelete(task.id)}
                     >
                       <Trash className="me-1" />
-                      Delete
+                      
                     </Link>
                   </td>
                 </tr>
@@ -159,8 +163,12 @@ function TaskList() {
         </>
       ) : (
         <p>No tasks found.</p>
-      )}
-      <ToastContainer />
+      )
+    ) : (
+      <p>Loading data...</p>
+    )}
+    <ToastContainer />
+
     </div>
   );
 }

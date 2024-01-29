@@ -21,7 +21,7 @@ const App = () => {
         <Navbar />
 
         {/* Main content */}
-        <div className="container mt-4">
+        <div className="container-fluid mt-4">
           <Routes> {/* Use Routes instead of Switch */}
             <Route path="/" element={<HeroSection />} />
             <Route path="/signup" element={<Signup />} />
